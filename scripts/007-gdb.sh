@@ -14,6 +14,11 @@ cd gdb-"$GDB_VERSION"
 patch -p1 < ../../patches/gdb-"$GDB_VERSION"-PSP.patch
 patch -p1 < ../../patches/gdb-"$GDB_VERSION"-fixes.patch
 
+# Check if on a Windows machine and using MSYS2 to build
+if [ "$OS" == "Windows_NT" ] && [ "$MSYSTEM" != "" ]; then
+  patch -p1 < ../../patches/gdb-"$GDB_VERSION"-MSYS.patch
+fi
+
 # Create and enter the build directory.
 mkdir build-psp
 cd build-psp

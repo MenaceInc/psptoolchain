@@ -1,0 +1,29 @@
+diff -NrU3 gdb-7.5.1/gdb//windows-termcap.c gdb-7.5.1-patched/gdb/windows-termcap.c
+--- gdb-7.5.1/gdb//windows-termcap.c	2020-07-23 01:58:03.453125800 +0100
++++ gdb-7.5.1-patched/gdb/windows-termcap.c	2020-07-23 01:11:21.730945400 +0100
+@@ -26,7 +26,7 @@
+ extern int tgetnum (char *name);
+ extern int tgetflag (char *name);
+ extern char* tgetstr (char *name, char **area);
+-extern int tputs (char *string, int nlines, int (*outfun) ());
++/* extern int tputs (char *string, int nlines, int (*outfun) ()); */
+ extern char *tgoto (const char *cap, int col, int row);
+ 
+ /* Each of the files below is a minimal implementation of the standard
+@@ -57,14 +57,14 @@
+   return NULL;
+ }
+ 
+-int
++/* int
+ tputs (char *string, int nlines, int (*outfun) ())
+ {
+   while (*string)
+     outfun (*string++);
+ 
+   return 0;
+-}
++} */
+ 
+ char *
+ tgoto (const char *cap, int col, int row)
